@@ -1,0 +1,10 @@
+<div class="stand_info">
+	Hello, <?php echo $login_name; ?>. You are success in register
+</div>
+<div class="stand_form">
+    <form action="<?php echo config_item('base_url').config_item('index_page').'/auth/logout/'; ?>" method="post" >
+        <div class="row_form">
+            <input type="submit" id="submit_logout" name="submit_logout" class="stand_button" value ="logout" />
+        </div>
+    </form>
+</div>

@@ -1,0 +1,207 @@
+#addressbook_main{
+	margin: 0;
+	padding: 0;
+	height: 500px;
+	width: 680px;
+	background: red;
+}
+
+#addressbook_toolbar {
+	width: 100%;
+	float:left;
+	background: #44ff66;
+	height: 40px;
+}
+
+#addressbook_left{
+	width: 33%;
+	float:left;
+	background: #ffbb66;
+	position: relative;
+	height: 98%;
+	margin: 0;
+	padding: 0;
+}
+
+#addressbook_right{
+	width: 64%;
+	float:right;
+	background: #776699;
+	height: 98%;
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
+#addressbook_cat_content {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	position: relative;
+	background: #66dd99;
+	overflow-y: scroll;
+}
+
+#addressbook_book_content {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	position: relative;
+	background: #66dd99;
+	overflow-y: scroll;
+}
+
+#addressbook_catbar {
+	width: 100%;
+	height: 40px;
+	background: #999999;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+#addressbook_bookbar {
+	width: 100%;
+	height: 40px;
+	background: #999999;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	margin: 0;
+	padding: 0;
+}
+
+.data_row{
+	clear: both;
+}
+
+#selectable .ui-selecting { background: #FECA40; }
+#selectable .ui-selected { background: #F39814; color: white; }
+#selectable { list-style-type: none; margin: 0; padding: 0; width: 100%; overflow-x: hidden;}
+#selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 14px; }
+
+
+#selectable2 .ui-selecting { background: #FECA40; }
+#selectable2 .ui-selected { background: #F39814; color: white; }
+#selectable2 { list-style-type: none; margin: 0; padding: 0; width: 100%; overflow-x: hidden;}
+#selectable2 li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 14px; }
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+}
+
+#module_main{
+	margin: 0;
+	padding: 0;
+	height: 600px;
+	width: 100%;
+	background: #CCCCCC;
+}
+
+#module_toolbar {
+	width: 100%;
+	float:left;
+	background: #44ff66;
+	height: 40px;
+}
+
+#module_search {
+	width: 100%;
+	background: #DDDDDD;
+	padding: 20px;
+}
+
+
+#divEditCat{
+    display:none;
+}
+
+#divEditEbook{
+    display:none;
+}
+
+
+#bookfeed_main{
+	margin: 0;
+	padding: 0;
+	height: 500px;
+	width: 680px;
+	background: #999999;
+}
+
+#bookfeed_toolbar {
+	width: 100%;
+	float:left;
+	background: #44ff66;
+	height: 40px;
+}
+
+#bookfeed_left{
+	width: 33%;
+	float:left;
+	background: #ffbb66;
+	position: relative;
+	height: 98%;
+	margin: 0;
+	padding: 0;
+}
+
+#bookfeed_right{
+	width: 64%;
+	float:right;
+	background: #776699;
+	height: 98%;
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
+#bookfeed_cat_content {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	position: relative;
+	background: #AAAAAA;
+	overflow-y: scroll;
+}
+
+#bookfeed_book_content {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	position: relative;
+	background: #66dd99;
+	overflow-y: scroll;
+}
+
+#bookfeed_catbar {
+	width: 100%;
+	height: 40px;
+	background: #999999;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+#bookfeed_bookbar {
+	width: 100%;
+	height: 40px;
+	background: #999999;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	margin: 0;
+	padding: 0;
+}
