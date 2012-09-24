@@ -17,13 +17,12 @@
 
 $startTime = microtime(true);
 
-require_once(dirname(__FILE__) . '/entryPoint'.EXT);
+define( 'EXT', '.php' );
 
-if (defined(WAPATH_SYSTEM)) {
-    
+require_once(dirname(__FILE__) . '/entryPoint'.EXT);
+if (defined('WAPATH_SYSTEM')) {
     require_once(WAPATH_SYSTEM.DS.'libraries/WaController'.EXT);
     require_once(WAPATH_SYSTEM.DS.'libraries/WaView'.EXT);
-    
     require_once(WAPATH_SYSTEM .DS.'WaApplication'.EXT);
     $app = new WaApplication();
 }

@@ -1,6 +1,5 @@
 <?php
-// no direct access
-defined( '_WAEXEC' ) or die( 'Restricted access' );
+
 /**
 * Wandering PHP Framework
 *
@@ -62,7 +61,6 @@ define( 'DS', DIRECTORY_SEPARATOR );
 define('BASEPATH', $core_folder.DS);
 define( 'WAPATH_SYSTEM',	 	WAPATH_BASE.DS.$core_folder.DS );
 define( 'WAPATH_CONFIG',	 	WAPATH_BASE.DS.$config_folder.DS );
-define('EXT', '.php');
 
 
 

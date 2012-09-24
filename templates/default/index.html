@@ -18,13 +18,13 @@ and open the template in the editor.
         </script>
         
         
-        <?php echo $module_header; ?>
+        <?php if (isset($module_header)) echo $module_header; ?>
 		
         
     </head>
     <body>
         <div>
-            <?php echo $main_content; ?>
+            <?php if (isset($main_content)) echo $main_content; ?>
         </div>
     </body>
 </html>

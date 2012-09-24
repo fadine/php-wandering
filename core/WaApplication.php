@@ -41,7 +41,6 @@ class WaApplication {
         $paramInputs = $myUri->getInputParams();
 
         $myContr = load_controller($controllerClass);
-
         if (isset($myContr) && isset($controllerMethod)) {
             pa_call_user_func_array($myContr, $controllerMethod, $paramInputs);
         } else {

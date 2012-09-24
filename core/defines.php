@@ -20,7 +20,7 @@ defined( '_WAEXEC' ) or die( 'Restricted access' );
 *Application define
 */
 
-define( 'PAPATH_APPLICATION',	 	WAPATH_SYSTEM.'application' );
+define( 'WAPATH_APPLICATION',	 	WAPATH_SYSTEM.'application' );
 
 define('FOPEN_READ', 							'rb');
 define('FOPEN_READ_WRITE',						'r+b');
