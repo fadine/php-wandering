@@ -26,7 +26,7 @@ defined( '_WAEXEC' ) or die( 'Restricted access' );
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://localhost/dumme/";
+$config['base_url']	= "http://localhost/wandering/";
 
 /*
 |--------------------------------------------------------------------------
@@ -247,7 +247,7 @@ $config['time_reference'] = 'local';
 $config['proxy_ips'] = '';
 
 
-$config['library_folders'] = array('data_objects','system/libraries','userlibs','system/libraries/TemplateEngineLayer','system/libraries/element','system/packages/smarty');
+$config['library_folders'] = array('data_objects','core/libraries','userlibs','core/libraries/TemplateEngineLayer','core/libraries/element','core/packages/smarty');
 
 /**
  * setup all classes you want auto require into system
