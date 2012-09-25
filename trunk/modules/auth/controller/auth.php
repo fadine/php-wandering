@@ -48,7 +48,7 @@ class Auth extends WaController
                     $myModel = load_mode('authmode', 'auth');
 
                     //$myModel->create_table();
-                    $mDataSessions = load_class("Sessions");
+                    $mDataSessions = load_class("WaSession");
                     $mDataSessions->createTable();
 
                     $data = $myModel->get_user_by_login($userName);

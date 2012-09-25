@@ -44,8 +44,8 @@ class DatabaseManager {
 	function __construct() {
 	
 		//quanghuy
-		if (file_exists(WAPATH_SYSTEM. 'config/database'.EXT)) {
-			require_once (WAPATH_SYSTEM.'config/database'.EXT);
+		if (file_exists(WAPATH_CONFIG. 'database'.EXT)) {
+			require_once (WAPATH_CONFIG.'database'.EXT);
 		} else {
 			show_error('The configuration file database'.EXT.' does not exist.');
 		}
@@ -115,7 +115,7 @@ class DatabaseManager {
 	function __getDriver($config) {
 
 		if (!isset($config['datasource'])) {
-			$config['datasource'] = 'pado';
+			$config['datasource'] = 'wado';
 		}
 
 		if (isset($config['driver']) && $config['driver'] != null && !empty($config['driver'])) {
