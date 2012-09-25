@@ -48,8 +48,8 @@ class Auth extends WaController
                     $myModel = load_mode('authmode', 'auth');
 
                     //$myModel->create_table();
-                    $mDataSessions = load_class("WaSession");
-                    $mDataSessions->createTable();
+                    $mDataSessions = load_class("Sessions");
+                    //$mDataSessions->createTable();
 
                     $data = $myModel->get_user_by_login($userName);
                     if ($data['user_password']==md5($userPassword.config_item('encryption_key'))) {
