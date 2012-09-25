@@ -261,13 +261,13 @@ $config['template_dir'] = 'templates/default';
 /*
 | Controller folders, string of aray ò string
 */
-$config['controler_folders'] = array('system/application/controllers','modules');
+$config['controler_folders'] = array('core/application/controllers','modules');
 
-$config['view_folders'] = array('system/application/views','modules');
+$config['view_folders'] = array('core/application/views','modules');
 
-$config['mode_folders'] = array('system/application/modes','modules');
+$config['mode_folders'] = array('core/application/modes','modules');
 
-$config['helper_folders'] = array('system/helper');
+$config['helper_folders'] = array('core/helper');
 
 $config['modul_folders'] = array('modules');
 
