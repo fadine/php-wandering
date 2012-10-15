@@ -3,12 +3,27 @@ defined( '_WAEXEC' ) or die( 'Restricted access' );
 
 class Authmode{
 
+        /*
+         * @type: user dataobject
+         */
 	private $users;
+        
+        /*
+         * @type: groups dataobject
+         */
+        private $groups;
+        
+        /*
+         * @type: profiles dataobject
+         */
+        private $profiles;
 
     function __construct()
     {
         
         $this->users = load_class("Users");
+        $this->groups = load_class("Groups");
+        $this->profiles = load_class("Profiles");
     }
 
 	
@@ -103,6 +118,14 @@ class Authmode{
 	
 	public function create_table(){
 		$this->users->createTable();
+                $this->groups->createTable();
+                $this->profiles->createTable();
+                
+                $groupsxy = load_class("Groupsxy");
+                if ($groupsxy!=null) $groupsxy->createTable();
+                
+                $groupusers = load_class("Groupusers");
+                if ($groupusers!=null) $groupusers->createTable();
 	}
 	
 

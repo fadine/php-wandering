@@ -1,4 +1,4 @@
-<?php  
+ <?php  
 defined( '_WAEXEC' ) or die( 'Restricted access' );
 /**
 * Wandering PHP Framework
@@ -21,7 +21,7 @@ class DATABASE_CONFIG {
 		'port' => '',
 		'login' => 'root',
 		'password' => '',
-		'database' => 'dumme',
+		'database' => 'wandering',
 		'schema' => '',
 		'prefix' => '',
 		'encoding' => ''

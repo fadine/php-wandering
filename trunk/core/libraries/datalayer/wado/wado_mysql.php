@@ -132,7 +132,7 @@ var $tableParameters = array(
  *
  * @return array Array of tablenames in the database
  */
-	function listSources() {
+	function listSources($data = null) {
 		$cache = parent::listSources();
 		if ($cache != null) {
 			return $cache;
@@ -252,7 +252,7 @@ var $tableParameters = array(
  *
  * @return integer Number of affected rows
  */
-	function lastAffected() {
+	function lastAffected($source = null) {
 		if ($this->_result) {
 			return mysql_affected_rows($this->connection);
 		}
@@ -264,7 +264,7 @@ var $tableParameters = array(
  *
  * @return integer Number of rows in resultset
  */
-	function lastNumRows() {
+	function lastNumRows($source = null) {
 		if ($this->_result and is_resource($this->_result)) {
 			return @mysql_num_rows($this->_result);
 		}

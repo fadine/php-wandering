@@ -45,15 +45,21 @@ class WaLanguage {
         if (isset($myUserCurrentData['user_language'])) {
             $this->userLanguage = $myUserCurrentData['user_language'];
         }else{
-            $this->userLanguage = $default_lang;
+            $this->userLanguage = $this->default_lang;
         }
         
-        if (config_item('modul_folders') && file_exists(WAPATH_BASE.DS.config_item('modul_folders').DS.strtolower($module_name).DS."languages".DS.$this->userLanguage.EXT) ){
-            require_once(WAPATH_BASE.DS.config_item('modul_folders').DS.strtolower($module_name).DS."languages".DS.$this->userLanguage.EXT);
-            if (isset($lang) && is_array($lang)) $this->module_lang_label = $lang;
+        
+        $moduleFolders = config_item('modul_folders');
+        
+        foreach ($moduleFolders as $modul_folder) {
+            if (file_exists(WAPATH_BASE.DS.$modul_folder.DS.strtolower($module_name).DS."languages".DS.$this->userLanguage.EXT) ){
+                require_once(WAPATH_BASE.DS.$modul_folder.DS.strtolower($module_name).DS."languages".DS.$this->userLanguage.EXT);
+                if (isset($lang) && is_array($lang)) $this->module_lang_label = $lang;
+                break;
+            }
         }
         
-        log_message('debug', "View Class Initialized");
+        log_message('debug', "Languages Class Initialized");
     }
     
     
