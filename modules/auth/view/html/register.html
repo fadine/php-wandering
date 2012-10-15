@@ -21,17 +21,17 @@ if (isset($register_info)){
 <div class="stand_form">
     <form action="<?php echo config_item('base_url').config_item('index_page').'/auth/register/'; ?>" method="post" >
         <div class="row_form">
-            <label><?php echo __LOGIN_NAME_LABEL; ?></label>
+            <label><?php echo $lang->get_label('user_name'); ?></label>
             <input type="text" id="login_name" name="login_name" class="stand_input" value ="" />
         </div>
 
         <div class="row_form">
-            <label><?php echo __LOGIN_EMAIL_LABEL; ?></label>
+            <label><?php echo $lang->get_label('user_email'); ?></label>
             <input type="text" id="email" name="email" class="stand_input" value ="" />
         </div>
         
         <div class="row_form">
-            <label><?php echo __PASSWORD_LABEL; ?></label>
+            <label><?php echo $lang->get_label('user_password'); ?></label>
             <input type="password" id="password" name="password" class="stand_input" value ="" />
         </div>
 		

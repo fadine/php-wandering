@@ -33,6 +33,12 @@ class Auth extends WaController
 	}
         
         
+        public function create_table() {
+            $myModel = load_mode('authmode', 'auth');
+            $myModel->create_table();
+        }
+        
+        
 	public function login(){
 			
 		$myUserCurrentData = $this->session->all_userdata();
@@ -85,7 +91,7 @@ class Auth extends WaController
                 $vars['login_name'] = $myUserCurrentData['username'];
                 $this->myView->show_loged($vars);
             }else {
-                $this->myView->show_register();
+                $this->myView->show_register(null);
             }
         }
         
@@ -107,6 +113,7 @@ class Auth extends WaController
                     $vars['register_error'] = "Username in use.";
                     $this->myView->show_register($vars);
                 }else {
+                    $errorArr = "";
                     if (strlen($userName)<3) $errorArr .= "Username is too short.<br />";  
                     if (strlen($userPassword)<3) $errorArr .= "Password is too short.<br />";  
                     if (strlen($userEmail)<3) $errorArr .= "Email is too short.<br />";  

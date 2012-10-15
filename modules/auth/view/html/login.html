@@ -21,12 +21,12 @@ if (isset($login_info)){
 <div class="stand_form">
     <form action="<?php echo config_item('base_url').config_item('index_page').'/auth/login/'; ?>" method="post" >
         <div class="row_form">
-            <label><?php echo (defined("__LOGIN_NAME_LABEL"))?__LOGIN_NAME_LABEL:"Name"; ?></label>
+            <label><?php echo $lang->get_label('user_name'); ?></label>
             <input type="text" id="login_name" name="login_name" class="stand_input" value ="" />
         </div>
 
         <div class="row_form">
-            <label><?php echo (defined("__PASSWORD_LABEL"))?__PASSWORD_LABEL:"Password"; ?></label>
+            <label><?php echo $lang->get_label('user_password'); ?></label>
             <input type="password" id="password" name="password" class="stand_input" value ="" />
         </div>
 		
