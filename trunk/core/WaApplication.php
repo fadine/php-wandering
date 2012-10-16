@@ -39,6 +39,8 @@ class WaApplication {
         $controllerClass = $myUri->getControllerName();
         $controllerMethod = $myUri->getMethodName();
         $paramInputs = $myUri->getInputParams();
+        
+        if ($controllerMethod == null || $controllerMethod == "") $controllerMethod = $this->default_method;
 
         $myContr = load_controller($controllerClass);
         if (isset($myContr) && isset($controllerMethod)) {
