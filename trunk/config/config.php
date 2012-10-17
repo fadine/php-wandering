@@ -267,6 +267,8 @@ $config['view_folders'] = array('core/application/views','modules');
 
 $config['mode_folders'] = array('core/application/modes','modules');
 
+$config['data_object_folders'] = array('data_objects','modules');
+
 $config['helper_folders'] = array('core/helper');
 
 $config['modul_folders'] = array('modules');

@@ -21,9 +21,9 @@ class Authmode{
     function __construct()
     {
         
-        $this->users = load_class("Users");
-        $this->groups = load_class("Groups");
-        $this->profiles = load_class("Profiles");
+        $this->users = load_data_object('Users', 'auth');
+        $this->groups = load_data_object("Groups", 'auth');
+        $this->profiles = load_data_object("Profiles", 'auth');
     }
 
 	
@@ -121,10 +121,10 @@ class Authmode{
                 $this->groups->createTable();
                 $this->profiles->createTable();
                 
-                $groupsxy = load_class("Groupsxy");
+                $groupsxy = load_data_object("Groupsxy", 'auth'); //load_class("Groupsxy");
                 if ($groupsxy!=null) $groupsxy->createTable();
                 
-                $groupusers = load_class("Groupusers");
+                $groupusers = load_data_object("Groupusers", 'auth'); //load_class("Groupusers");
                 if ($groupusers!=null) $groupusers->createTable();
 	}
 	
