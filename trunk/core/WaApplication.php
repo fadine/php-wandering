@@ -44,7 +44,7 @@ class WaApplication {
 
         $myContr = load_controller($controllerClass);
         if (isset($myContr) && isset($controllerMethod)) {
-            pa_call_user_func_array($myContr, $controllerMethod, $paramInputs);
+            wa_call_user_func_array($myContr, $controllerMethod, $paramInputs);
         } else {
             log_message('error', 'Controller Object And Method Invalid --> ' . $controllerClass . '->' . $controllerMethod);
             echo 'Controller Error-> ' . $controllerClass . '->' . $controllerMethod;

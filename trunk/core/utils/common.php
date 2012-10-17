@@ -542,41 +542,32 @@ function &load_controller($class){
 		{
 			require_once(WAPATH_BASE.DS.$myControllerFolders.DS.$class.EXT);
 			$fileExist = true;
-			break;
 		}elseif (file_exists(WAPATH_BASE.DS.$myControllerFolders.DS.$class.DS.'controller'.DS.$class.EXT)){
 			require_once(WAPATH_BASE.DS.$myControllerFolders.DS.$class.DS.'controller'.DS.$class.EXT);
 			$fileExist = true;
-			break;
 		}elseif (file_exists(WAPATH_BASE.DS.$myControllerFolders.DS.$name.DS.'controller'.DS.$class.EXT)){
 			require_once(WAPATH_BASE.DS.$myControllerFolders.DS.$name.DS.'controller'.DS.$class.EXT);
 			$fileExist = true;
-			break;
 		}elseif (file_exists(WAPATH_BASE.DS.$myControllerFolders.DS.$name.EXT))
 		{
 			require_once(WAPATH_BASE.DS.$myControllerFolders.DS.$name.EXT);
 			$fileExist = true;
-			break;
 		}elseif (file_exists(WAPATH_BASE.DS.$myControllerFolders.DS.$class.DS.'controller'.DS.$name.EXT)){
 			require_once(WAPATH_BASE.DS.$myControllerFolders.DS.$class.DS.'controller'.DS.$name.EXT);
 			$fileExist = true;
-			break;
 		}elseif (file_exists(WAPATH_BASE.DS.$myControllerFolders.DS.$name.DS.'controller'.DS.$name.EXT)){
 			require_once(WAPATH_BASE.DS.$myControllerFolders.DS.$name.DS.'controller'.DS.$name.EXT);
 			$fileExist = true;
-			break;
 		}elseif (file_exists(WAPATH_BASE.DS.$myControllerFolders.DS.$name2.EXT))
 		{
 			require_once(WAPATH_BASE.DS.$myControllerFolders.DS.$name2.EXT);
 			$fileExist = true;
-			break;
 		}elseif (file_exists(WAPATH_BASE.DS.$myControllerFolders.DS.$class.DS.'controller'.DS.$name2.EXT)){
 			require_once(WAPATH_BASE.DS.$myControllerFolders.DS.$class.DS.'controller'.DS.$name2.EXT);
 			$fileExist = true;
-			break;
 		}elseif (file_exists(WAPATH_BASE.DS.$myControllerFolders.DS.$name.DS.'controller'.DS.$name2.EXT)){
 			require_once(WAPATH_BASE.DS.$myControllerFolders.DS.$name.DS.'controller'.DS.$name2.EXT);
 			$fileExist = true;
-			break;
 		}
 
 	}
@@ -603,33 +594,58 @@ function &load_controller($class){
 
 
 
-function &load_view($class, $controller_name){
-	static $views = array();
+function &load_view($class, $module_name){
+	return load_module_class($class, $module_name, "view");
+}
+
+
+
+function &load_mode($class, $module_name){
+	return load_module_class($class, $module_name, "mode");
+}
+
+
+
+function &load_data_object($class, $module_name){
+	return load_module_class($class, $module_name, "data_object");
+}
+
+
+static $classesRegister = array(array());
+
+/**
+ * 
+ * @staticvar array $modes
+ * @param type $class
+ * @param type $module_name
+ * @param type $typeName {controller, view, mode, data_object}
+ * @return array
+ */
+function &load_module_class($class, $module_name, $typeName = "controller"){
 	//$class = ucfirst($class);
 	$fileExist = false;
 	$name = strtolower($class);
 	$name2 = classNameToFileName($class);
 
-
-	if (isset($views[$class]))
+	if (isset($classesRegister[$typeName][$class]))
 	{
-		return $views[$class];
+		return $classesRegister[$typeName][$class];
 	}
 
-    $myViewFolders = config_item('view_folders');
-	if (is_array($myViewFolders)) {
-		foreach ($myViewFolders as $folder) {
+    $myClassFolders = config_item($typeName.'_folders');
+	if (isset($myClassFolders) && is_array($myClassFolders)) {
+		foreach ($myClassFolders as $folder) {
 			if (file_exists(WAPATH_BASE.DS.$folder.DS.$class.EXT))
 			{
 				require_once(WAPATH_BASE.DS.$folder.DS.$class.EXT);
 				$fileExist = true;
 				break;
-			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.$controller_name.DS.'view'.DS.$class.EXT)){
-				require_once(WAPATH_BASE.DS.$folder.DS.$controller_name.DS.'view'.DS.$class.EXT);
+			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.$module_name.DS.$typeName.DS.$class.EXT)){
+				require_once(WAPATH_BASE.DS.$folder.DS.$module_name.DS.$typeName.DS.$class.EXT);
 				$fileExist = true;
 				break;
-			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.strtolower($controller_name).DS.'view'.DS.$class.EXT)){
-				require_once(WAPATH_BASE.DS.$folder.DS.strtolower($controller_name).DS.'view'.DS.$class.EXT);
+			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.strtolower($module_name).DS.$typeName.DS.$class.EXT)){
+				require_once(WAPATH_BASE.DS.$folder.DS.strtolower($module_name).DS.$typeName.DS.$class.EXT);
 				$fileExist = true;
 				break;
 			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.$name.EXT))
@@ -637,138 +653,12 @@ function &load_view($class, $controller_name){
 				require_once(WAPATH_BASE.DS.$folder.DS.$name.EXT);
 				$fileExist = true;
 				break;
-			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.$controller_name.DS.'view'.DS.$name.EXT)){
-				require_once(WAPATH_BASE.DS.$folder.DS.$controller_name.DS.'view'.DS.$name.EXT);
+			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.$module_name.DS.$typeName.DS.$name.EXT)){
+				require_once(WAPATH_BASE.DS.$folder.DS.$module_name.DS.$typeName.DS.$name.EXT);
 				$fileExist = true;
 				break;
-			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.strtolower($controller_name).DS.'view'.DS.$name.EXT)){
-				require_once(WAPATH_BASE.DS.$folder.DS.strtolower($controller_name).DS.'view'.DS.$name.EXT);
-				$fileExist = true;
-				break;
-			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.$name2.EXT))
-			{
-				require_once(WAPATH_BASE.DS.$folder.DS.$name2.EXT);
-				$fileExist = true;
-				break;
-			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.$controller_name.DS.'view'.DS.$name2.EXT)){
-				require_once(WAPATH_BASE.DS.$folder.DS.$controller_name.DS.'view'.DS.$name2.EXT);
-				$fileExist = true;
-				break;
-			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.strtolower($controller_name).DS.'view'.DS.$name2.EXT)){
-				require_once(WAPATH_BASE.DS.$folder.DS.strtolower($controller_name).DS.'view'.DS.$name2.EXT);
-				$fileExist = true;
-				break;
-			}
-		}
-	}elseif ($myViewFolders!="") {
-		if (file_exists(WAPATH_BASE.DS.$myViewFolders.DS.$class.EXT))
-		{
-			require_once(WAPATH_BASE.DS.$myViewFolders.DS.$class.EXT);
-			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myViewFolders.DS.$controller_name.DS.'view'.DS.$class.EXT)){
-			require_once(WAPATH_BASE.DS.$myViewFolders.DS.$controller_name.DS.'view'.DS.$class.EXT);
-			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myViewFolders.DS.strtolower($controller_name).DS.'view'.DS.$class.EXT)){
-			require_once(WAPATH_BASE.DS.$myViewFolders.DS.strtolower($controller_name).DS.'view'.DS.$class.EXT);
-			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myViewFolders.DS.$name.EXT))
-		{
-			require_once(WAPATH_BASE.DS.$myViewFolders.DS.$name.EXT);
-			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myViewFolders.DS.$controller_name.DS.'view'.DS.$name.EXT)){
-			require_once(WAPATH_BASE.DS.$myViewFolders.DS.$controller_name.DS.'view'.DS.$name.EXT);
-			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myViewFolders.DS.strtolower($controller_name).DS.'view'.DS.$name.EXT)){
-			require_once(WAPATH_BASE.DS.$myViewFolders.DS.strtolower($controller_name).DS.'view'.DS.$name.EXT);
-			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myViewFolders.DS.$name2.EXT))
-		{
-			require_once(WAPATH_BASE.DS.$myViewFolders.DS.$name2.EXT);
-			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myViewFolders.DS.$controller_name.DS.'view'.DS.$name2.EXT)){
-			require_once(WAPATH_BASE.DS.$myViewFolders.DS.$controller_name.DS.'view'.DS.$name2.EXT);
-			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myViewFolders.DS.strtolower($controller_name).DS.'view'.DS.$name2.EXT)){
-			require_once(WAPATH_BASE.DS.$myViewFolders.DS.strtolower($controller_name).DS.'view'.DS.$name2.EXT);
-			$fileExist = true;
-			break;
-		}
-
-	}
-
-	if (!$fileExist) 
-		log_message('error', 'View File Not Found --> '.$class.EXT);
-
-	//convert first char to UPPERCASE
-	$name = ucfirst($class);
-	$name2 = fileNameToClassName($class);
-
-	if (class_exists($class)) {
-		$views[$class] =& instantiate_class(new $class());
-	}elseif(class_exists($name)) {
-		$views[$class] =& instantiate_class(new $name());
-	}elseif(class_exists($name2)) {
-		$views[$class] =& instantiate_class(new $name2());
-	}
-	
-	if (method_exists($views[$class],'setControllerName')) {
-		$views[$class]->setControllerName($controller_name);
-	}
-	
-	return $views[$class];	//can return ref of null
-}
-
-
-
-
-
-function &load_mode($class, $controller_name){
-	static $modes = array();
-	//$class = ucfirst($class);
-	$fileExist = false;
-	$name = strtolower($class);
-	$name2 = classNameToFileName($class);
-
-	if (isset($modes[$class]))
-	{
-		return $modes[$class];
-	}
-
-    $myModeFolders = config_item('mode_folders');
-	if (is_array($myModeFolders)) {
-		foreach ($myModeFolders as $folder) {
-			if (file_exists(WAPATH_BASE.DS.$folder.DS.$class.EXT))
-			{
-				require_once(WAPATH_BASE.DS.$folder.DS.$class.EXT);
-				$fileExist = true;
-				break;
-			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.$controller_name.DS.'mode'.DS.$class.EXT)){
-				require_once(WAPATH_BASE.DS.$folder.DS.$controller_name.DS.'mode'.DS.$class.EXT);
-				$fileExist = true;
-				break;
-			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.strtolower($controller_name).DS.'mode'.DS.$class.EXT)){
-				require_once(WAPATH_BASE.DS.$folder.DS.strtolower($controller_name).DS.'mode'.DS.$class.EXT);
-				$fileExist = true;
-				break;
-			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.$name.EXT))
-			{
-				require_once(WAPATH_BASE.DS.$folder.DS.$name.EXT);
-				$fileExist = true;
-				break;
-			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.$controller_name.DS.'mode'.DS.$name.EXT)){
-				require_once(WAPATH_BASE.DS.$folder.DS.$controller_name.DS.'mode'.DS.$name.EXT);
-				$fileExist = true;
-				break;
-			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.strtolower($controller_name).DS.'mode'.DS.$name.EXT)){
-				require_once(WAPATH_BASE.DS.$folder.DS.strtolower($controller_name).DS.'mode'.DS.$name.EXT);
+			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.strtolower($module_name).DS.$typeName.DS.$name.EXT)){
+				require_once(WAPATH_BASE.DS.$folder.DS.strtolower($module_name).DS.$typeName.DS.$name.EXT);
 				$fileExist = true;
 				break;
 			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.$name2.EXT))
@@ -776,62 +666,53 @@ function &load_mode($class, $controller_name){
 				require_once(WAPATH_BASE.DS.$folder.DS.$name2.EXT);
 				$fileExist = true;
 				break;
-			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.$controller_name.DS.'mode'.DS.$name2.EXT)){
-				require_once(WAPATH_BASE.DS.$folder.DS.$controller_name.DS.'mode'.DS.$name2.EXT);
+			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.$module_name.DS.$typeName.DS.$name2.EXT)){
+				require_once(WAPATH_BASE.DS.$folder.DS.$module_name.DS.$typeName.DS.$name2.EXT);
 				$fileExist = true;
 				break;
-			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.strtolower($controller_name).DS.'mode'.DS.$name2.EXT)){
-				require_once(WAPATH_BASE.DS.$folder.DS.strtolower($controller_name).DS.'mode'.DS.$name2.EXT);
+			}elseif (file_exists(WAPATH_BASE.DS.$folder.DS.strtolower($module_name).DS.$typeName.DS.$name2.EXT)){
+				require_once(WAPATH_BASE.DS.$folder.DS.strtolower($module_name).DS.$typeName.DS.$name2.EXT);
 				$fileExist = true;
 				break;
 			}
 		}
-	}elseif ($myModeFolders!="") {
-		if (file_exists(WAPATH_BASE.DS.$myModeFolders.DS.$class.EXT))
+	}elseif (isset($myClassFolders) && $myClassFolders!="") {
+		if (file_exists(WAPATH_BASE.DS.$myClassFolders.DS.$class.EXT))
 		{
-			require_once(WAPATH_BASE.DS.$myModeFolders.DS.$class.EXT);
+			require_once(WAPATH_BASE.DS.$myClassFolders.DS.$class.EXT);
 			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myModeFolders.DS.$controller_name.DS.'mode'.DS.$class.EXT)){
-			require_once(WAPATH_BASE.DS.$myModeFolders.DS.$controller_name.DS.'mode'.DS.$class.EXT);
+		}elseif (file_exists(WAPATH_BASE.DS.$myClassFolders.DS.$module_name.DS.$typeName.DS.$class.EXT)){
+			require_once(WAPATH_BASE.DS.$myClassFolders.DS.$module_name.DS.$typeName.DS.$class.EXT);
 			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myModeFolders.DS.strtolower($controller_name).DS.'mode'.DS.$class.EXT)){
-			require_once(WAPATH_BASE.DS.$myModeFolders.DS.strtolower($controller_name).DS.'mode'.DS.$class.EXT);
+		}elseif (file_exists(WAPATH_BASE.DS.$myClassFolders.DS.strtolower($module_name).DS.$typeName.DS.$class.EXT)){
+			require_once(WAPATH_BASE.DS.$myClassFolders.DS.strtolower($module_name).DS.$typeName.DS.$class.EXT);
 			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myModeFolders.DS.$name.EXT))
+		}elseif (file_exists(WAPATH_BASE.DS.$myClassFolders.DS.$name.EXT))
 		{
-			require_once(WAPATH_BASE.DS.$myModeFolders.DS.$name.EXT);
+			require_once(WAPATH_BASE.DS.$myClassFolders.DS.$name.EXT);
 			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myModeFolders.DS.$controller_name.DS.'mode'.DS.$name.EXT)){
-			require_once(WAPATH_BASE.DS.$myModeFolders.DS.$controller_name.DS.'mode'.DS.$name.EXT);
+		}elseif (file_exists(WAPATH_BASE.DS.$myClassFolders.DS.$module_name.DS.$typeName.DS.$name.EXT)){
+			require_once(WAPATH_BASE.DS.$myClassFolders.DS.$module_name.DS.$typeName.DS.$name.EXT);
 			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myModeFolders.DS.strtolower($controller_name).DS.'mode'.DS.$name.EXT)){
-			require_once(WAPATH_BASE.DS.$myModeFolders.DS.strtolower($controller_name).DS.'mode'.DS.$name.EXT);
+		}elseif (file_exists(WAPATH_BASE.DS.$myClassFolders.DS.strtolower($module_name).DS.$typeName.DS.$name.EXT)){
+			require_once(WAPATH_BASE.DS.$myClassFolders.DS.strtolower($module_name).DS.$typeName.DS.$name.EXT);
 			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myModeFolders.DS.$name2.EXT))
+		}elseif (file_exists(WAPATH_BASE.DS.$myClassFolders.DS.$name2.EXT))
 		{
-			require_once(WAPATH_BASE.DS.$myModeFolders.DS.$name2.EXT);
+			require_once(WAPATH_BASE.DS.$myClassFolders.DS.$name2.EXT);
 			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myModeFolders.DS.$controller_name.DS.'mode'.DS.$name2.EXT)){
-			require_once(WAPATH_BASE.DS.$myModeFolders.DS.$controller_name.DS.'mode'.DS.$name2.EXT);
+		}elseif (file_exists(WAPATH_BASE.DS.$myClassFolders.DS.$module_name.DS.$typeName.DS.$name2.EXT)){
+			require_once(WAPATH_BASE.DS.$myClassFolders.DS.$module_name.DS.$typeName.DS.$name2.EXT);
 			$fileExist = true;
-			break;
-		}elseif (file_exists(WAPATH_BASE.DS.$myModeFolders.DS.strtoloer($controller_name).DS.'mode'.DS.$name2.EXT)){
-			require_once(WAPATH_BASE.DS.$myModeFolders.DS.strtolower($controller_name).DS.'mode'.DS.$name2.EXT);
+		}elseif (file_exists(WAPATH_BASE.DS.$myClassFolders.DS.strtoloer($module_name).DS.$typeName.DS.$name2.EXT)){
+			require_once(WAPATH_BASE.DS.$myClassFolders.DS.strtolower($module_name).DS.$typeName.DS.$name2.EXT);
 			$fileExist = true;
-			break;
 		}
 
 	}
 
 	if (!$fileExist) 
-		log_message('error', 'Mode File Not Found --> '.$class.EXT);
+		log_message('error', ucfirst($typeName).' Class File Not Found --> '.$class.EXT);
 
 
 	//convert first char to UPPERCASE
@@ -839,22 +720,23 @@ function &load_mode($class, $controller_name){
 	$name2 = fileNameToClassName($class);
 
 	if (class_exists($class)) {
-		$modes[$class] =& instantiate_class(new $class());
+		$classesRegister[$typeName][$class] =& instantiate_class(new $class());
 	}elseif(class_exists($name)) {
-		$modes[$class] =& instantiate_class(new $name());
+		$classesRegister[$typeName][$class] =& instantiate_class(new $name());
 	}elseif(class_exists($name2)) {
-		$modes[$class] =& instantiate_class(new $name2());
+		$classesRegister[$typeName][$class] =& instantiate_class(new $name2());
 	}
 
-	if (method_exists($modes[$class],'setControllerName')) {
-		$modes[$class]->setControllerName($controller_name);
+	if (method_exists($classesRegister[$typeName][$class],'setModuleName')) {
+		$classesRegister[$typeName][$class]->setModuleName($module_name);
 	}
-	return $modes[$class];
+	return $classesRegister[$typeName][$class];
 }
 
 
 
-function pa_call_user_func_array($c, $a, $p) {
+
+function wa_call_user_func_array($c, $a, $p) {
     if (isset($c) && $a!="" && method_exists($c, $a)) { 
         switch(count($p)) {
             case 0: 

@@ -109,7 +109,7 @@ class SmartyTemplate implements WaTemplateInterface {
      * @param array $vars
      * @param boolean $clearFlag
      */
-    public function viewPart($partName, $controllerName = '', & $vars = null, $clearFlag = 0) {
+    public function viewPart($partName, $moduleName = '', & $vars = null, $clearFlag = 0) {
             if ($clearFlag)
                     $this->_objSmarty->clear_all_assign();
 
@@ -136,7 +136,7 @@ class SmartyTemplate implements WaTemplateInterface {
      * @param array $vars
      * @param boolean $clearFlag
      */
-    public function getPart($partName, $controllerName = '', & $vars = null, $clearFlag = 0) {
+    public function getPart($partName, $moduleName = '', & $vars = null, $clearFlag = 0) {
 
             if ($clearFlag) {
                     $this->_objSmarty->clear_all_assign();

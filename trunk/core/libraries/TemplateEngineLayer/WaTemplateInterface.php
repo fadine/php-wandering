@@ -18,8 +18,8 @@ interface WaTemplateInterface {
     public function setTemplateDir($dir);
     public function getTemplateDir();
     public function assign($key, $value);
-    public function viewPart($partName, $controllerName = '', & $vars = null, $clearFlag = 0);
-    public function getPart($partName, $controllerName = '', & $vars = null, $clearFlag = 0);
+    public function viewPart($partName, $moduleName = '', & $vars = null, $clearFlag = 0);
+    public function getPart($partName, $moduleName = '', & $vars = null, $clearFlag = 0);
     
 }
 ?>
