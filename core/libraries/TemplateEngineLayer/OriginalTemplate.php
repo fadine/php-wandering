@@ -81,7 +81,7 @@ class OriginalTemplate implements WaTemplateInterface {
      * @param <type> $vars array of variabales to set for template
      * @param <type> $clearFlag 
      */
-    public function viewPart($partName, $controllerName = '', & $vars = null, $clearFlag = 0){
+    public function viewPart($partName, $moduleName = '', & $vars = null, $clearFlag = 0){
 
         if ($clearFlag) unset( $this->_myVariables);
         
@@ -93,12 +93,12 @@ class OriginalTemplate implements WaTemplateInterface {
             }
         }
 		
-		if(!file_exists($filePath) && $controllerName!=''){
-			$filePath = $this->template_dir.$controllerName.DS.$partName;
+		if(!file_exists($filePath) && $moduleName!=''){
+			$filePath = $this->template_dir.$moduleName.DS.$partName;
 			if(!file_exists($filePath)){
-				$filePath = $this->template_dir.$controllerName.DS.$partName.".php";
+				$filePath = $this->template_dir.$moduleName.DS.$partName.".php";
 				if(!file_exists($filePath)){
-					$filePath = $this->template_dir.$controllerName.DS.$partName.".html";
+					$filePath = $this->template_dir.$moduleName.DS.$partName.".html";
 				}
 			}
 		}
@@ -136,7 +136,7 @@ class OriginalTemplate implements WaTemplateInterface {
      * @param <type> $clearFlag
      * @return <String> content of templates part after set variables
      */
-    public function getPart($partName, $controllerName = '', & $vars = null, $clearFlag = 0){
+    public function getPart($partName, $moduleName = '', & $vars = null, $clearFlag = 0){
         $myContent = "Template Not Found.";
         if ($clearFlag) unset( $this->_myVariables);
 
@@ -148,12 +148,12 @@ class OriginalTemplate implements WaTemplateInterface {
             }
         }
 		
-		if(!file_exists($filePath) && $controllerName!=''){
-			$filePath = $this->template_dir.$controllerName.DS.$partName;
+		if(!file_exists($filePath) && $moduleName!=''){
+			$filePath = $this->template_dir.$moduleName.DS.$partName;
 			if(!file_exists($filePath)){
-				$filePath = $this->template_dir.$controllerName.DS.$partName.".php";
+				$filePath = $this->template_dir.$moduleName.DS.$partName.".php";
 				if(!file_exists($filePath)){
-					$filePath = $this->template_dir.$controllerName.DS.$partName.".html";
+					$filePath = $this->template_dir.$moduleName.DS.$partName.".html";
 				}
 			}
 		}
